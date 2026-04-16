@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suppawish Saetieow — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f8f5;
+      --fg: #1a1a18;
+      --muted: #7a7a72;
+      --border: #e0dfd8;
+      --accent: #2a2a26;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(249,248,245,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      letter-spacing: 0.01em;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+
+    /* SECTIONS */
+    section { padding: 120px 48px; max-width: 900px; margin: 0 auto; }
+
+    /* HERO */
+    .hero { padding-top: 160px; padding-bottom: 100px; }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .dot-green {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #5cb87a;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--muted);
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      padding-top: 20px;
+      max-width: 460px;
+      border-top: 1px solid var(--border);
+      margin-top: 28px;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 12px 24px;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-dark {
+      background: var(--fg);
+      color: var(--bg);
+      border: 1px solid var(--fg);
+    }
+    .btn-dark:hover { background: #3a3a36; }
+    .btn-outline {
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--fg); }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* SECTION LABELS */
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-left h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .about-left p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+    .about-right p { font-size: 15px; line-height: 1.9; color: var(--fg); margin-bottom: 20px; }
+    .about-right p:last-child { margin-bottom: 0; }
+
+    /* SKILLS */
+    .skills-section { padding-top: 80px; padding-bottom: 80px; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .skill-card {
+      border: 1px solid var(--border);
+      padding: 28px 24px;
+      border-radius: 2px;
+    }
+    .skill-card-icon { font-size: 20px; margin-bottom: 12px; }
+    .skill-card-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+    .skill-card-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* PROJECTS */
+    .projects-list { display: flex; flex-direction: column; gap: 0; }
+    .project-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .project-item:first-child { border-top: 1px solid var(--border); }
+    .project-num { font-size: 12px; color: var(--muted); }
+    .project-info h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .project-info p { font-size: 13px; color: var(--muted); }
+    .project-tag {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    /* CONTACT */
+    .contact-block {
+      text-align: center;
+      padding: 100px 48px;
+    }
+    .contact-block h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      margin-bottom: 12px;
+    }
+    .contact-block p { font-size: 15px; color: var(--muted); margin-bottom: 36px; }
+    .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .contact-link {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 2px;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .contact-link:hover { color: var(--fg); border-color: var(--fg); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 100%;
+    }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 680px) {
+      nav { padding: 16px 20px; }
+      section { padding: 80px 20px; }
+      .hero { padding-top: 120px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .project-item { grid-template-columns: 48px 1fr; }
+      .project-tag { display: none; }
+      .contact-block { padding: 80px 20px; }
+      footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">SS</a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-eyebrow">
+      <span class="dot-green"></span>
+      พร้อมรับงาน / ฝึกงาน
+    </div>
+    <h1 class="hero-title">
+      Suppawish<br>
+      <em>Saetieow</em>
+    </h1>
+    <p class="hero-sub">
+      นักศึกษาสาขา Asian Studies มหาวิทยาลัยศิลปากร<br>
+      สนใจด้านวัฒนธรรม ภาษา และการทำงานข้ามวัฒนธรรม
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-dark">ดูผลงาน</a>
+      <a href="#contact" class="btn btn-outline">ติดต่อ</a>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="label">About</p>
+    <div class="about-grid fade-in">
+      <div class="about-left">
+        <h2>เกี่ยวกับ<br>ตัวเอง</h2>
+        <p>Silpakorn University<br>Asian Studies<br>ชั้นปี —</p>
+      </div>
+      <div class="about-right">
+        <p>สวัสดีครับ ผมชื่อสุภาวิชญ์ แซ่เตี้ยว นักศึกษาสาขาเอเชียศึกษา มหาวิทยาลัยศิลปากร สนใจในภาษาและวัฒนธรรมของภูมิภาคเอเชีย โดยเฉพาะญี่ปุ่นและประเทศที่ใช้ภาษาอังกฤษเป็นภาษาทางการ</p>
+        <p>ผมเชื่อว่าการเข้าใจวัฒนธรรมและภาษาเป็นรากฐานของการสื่อสารที่มีประสิทธิภาพ และมองหาโอกาสในการนำทักษะเหล่านี้ไปใช้จริงในองค์กรหรือโครงการระดับนานาชาติ</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SKILLS -->
+  <section class="skills-section">
+    <p class="label">Skills</p>
+    <div class="skills-grid fade-in">
+      <div class="skill-card">
+        <div class="skill-card-icon">🇯🇵</div>
+        <p class="skill-card-title">ภาษาญี่ปุ่น</p>
+        <p class="skill-card-desc">สามารถสื่อสารได้ในชีวิตประจำวันและบริบทวิชาการ</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🇬🇧</div>
+        <p class="skill-card-title">ภาษาอังกฤษ</p>
+        <p class="skill-card-desc">สื่อสารได้ทั้งพูดและเขียนในระดับมืออาชีพ</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🤝</div>
+        <p class="skill-card-title">การทำงานเป็นทีม</p>
+        <p class="skill-card-desc">มีประสบการณ์ทำงานร่วมกับกลุ่มที่หลากหลาย มุ่งเน้นผลลัพธ์</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="label">Projects</p>
+    <div class="projects-list fade-in">
+      <div class="project-item">
+        <span class="project-num">01</span>
+        <div class="project-info">
+          <h3>— ชื่อโปรเจกต์ที่ 1</h3>
+          <p>อธิบายสั้นๆ เกี่ยวกับสิ่งที่ทำ เช่น รายงานวิจัย / งานกลุ่ม / กิจกรรม</p>
+        </div>
+        <span class="project-tag">Research</span>
+      </div>
+      <div class="project-item">
+        <span class="project-num">02</span>
+        <div class="project-info">
+          <h3>— ชื่อโปรเจกต์ที่ 2</h3>
+          <p>อธิบายสั้นๆ เกี่ยวกับสิ่งที่ทำ เช่น กิจกรรมอาสา / การแปลภาษา</p>
+        </div>
+        <span class="project-tag">Language</span>
+      </div>
+      <div class="project-item">
+        <span class="project-num">03</span>
+        <div class="project-info">
+          <h3>— ชื่อโปรเจกต์ที่ 3</h3>
+          <p>อธิบายสั้นๆ เกี่ยวกับสิ่งที่ทำ เช่น งานอีเวนต์ / โครงการมหาวิทยาลัย</p>
+        </div>
+        <span class="project-tag">Event</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
+  <div class="contact-block" id="contact">
+    <h2>ติดต่อได้เลยครับ</h2>
+    <p>เปิดรับโอกาสใหม่ๆ ไม่ว่าจะเป็นงานพาร์ทไทม์ ฝึกงาน หรือโปรเจกต์ร่วมกัน</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:suppawish.saetieow@gmail.com">suppawish.saetieow@gmail.com</a>
+      <a class="contact-link" href="#">GitHub</a>
+      <a class="contact-link" href="#">LinkedIn</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2025 Suppawish Saetieow</span>
+    <span>Silpakorn University — Asian Studies</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
